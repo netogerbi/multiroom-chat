@@ -1,4 +1,4 @@
-const app = require('./config/server');
+app = require('express');
 
 const listener = app.listen(80, () => {
   console.log('server running')
