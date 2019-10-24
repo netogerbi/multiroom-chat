@@ -1,6 +1,6 @@
 const app = require('./config/server');
 
-const listener = app.listen(80, () => {
+const listener = app.listen(8080, () => {
   console.log('server running')
 });
 
