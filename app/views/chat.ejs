@@ -111,6 +111,7 @@
             <div class="col-md-12">
                <div class="input-group">
                   <input type="text" class="form-control" id='msg' placeholder="Mensagem">
+                  <input type="hidden" class="form-control" id='nickname' value="<%= formData.nickname %>">
                   <span class="input-group-btn">
                      <button class="btn btn-default" type="button" id='btn_send'>></button>
                   </span>
@@ -129,7 +130,7 @@
       const socket = io('http://localhost:8080')
 
       $('#btn_send').click(function () {
-         socket.emit('msgToServer', { nickname: '', message: $('#msg').val() })
+         socket.emit('msgToServer', { nickname: $('#nickname').val(), message: $('#msg').val() })
       })
 
       socket.on('msgToClient', function (data) {
