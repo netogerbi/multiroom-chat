@@ -145,6 +145,9 @@
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 			const socket = io('http://localhost:8080')
+			socket.on('msgToClient', function(data) {
+				alert('Mensagem recebida do servidor ' + data)
+			})
 		</script>
 
 	</body>

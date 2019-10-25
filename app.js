@@ -16,6 +16,9 @@ io.on('connection', function(socket) {
   })
 })
 
+// defining a global var... must be retrieved using get => app.get('socket')
+app.set('socket', io)
+
 /**
  * When the page that has the client side file that connects with server websocket, the connection is created
  * when the page is unloaded, the connection is closed too.
