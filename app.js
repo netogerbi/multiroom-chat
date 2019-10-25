@@ -14,6 +14,13 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     console.log('User disconnected')
   })
+
+
+  /** On receive msg from client to server it just send againt to client */
+  socket.on('msgToServer', function(data) {
+    socket.emit('msgToClient', { nickname: data.nickname, message: data.message })
+  })
+
 })
 
 // defining a global var... must be retrieved using get => app.get('socket')
