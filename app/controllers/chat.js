@@ -10,10 +10,12 @@ module.exports.startChat = function (app, req, res) {
     return;
   }
 
-  // retrieving global defined in set
-  app.get('socket').emit('msgToClient', 'data that has been sent')
 
   const formData = req.body
+
+  // retrieving global defined in set
+  app.get('socket').emit('msgToClient', { nickname: formData.nickname,  message: 'acabou de entrar...'})
+
 
   res.render('chat')
 }
