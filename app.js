@@ -18,7 +18,13 @@ io.on('connection', function(socket) {
 
   /** On receive msg from client to server it just send againt to client */
   socket.on('msgToServer', function(data) {
+    
+    // send the message for self
     socket.emit('msgToClient', { nickname: data.nickname, message: data.message })
+
+    // broadcast the message
+    socket.broadcast.emit('msgToClient', { nickname: data.nickname, message: data.message })
+
   })
 
 })
