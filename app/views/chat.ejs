@@ -84,20 +84,11 @@
       <div class="row participantes" id="participantes" style="display:none">
          <div class="col-md-1"></div>
          <div class="col-md-10">
-            <span class="participante">
-               <img src="images/ico_usuario.png" />
-               Jorge
-            </span>
+            
+            <div id="participants">
+            </div>
+            <input type="hidden" class="form-control" id='participants_updated' value="0">
 
-            <span class="participante">
-               <img src="images/ico_usuario.png" />
-               José
-            </span>
-
-            <span class="participante">
-               <img src="images/ico_usuario.png" />
-               Fernando
-            </span>
          </div>
          <div class="col-md-1"></div>
 
@@ -130,7 +121,13 @@
       const socket = io('http://localhost:8080')
 
       $('#btn_send').click(function () {
-         socket.emit('msgToServer', { nickname: $('#nickname').val(), message: $('#msg').val() })
+         socket.emit('msgToServer', 
+            { 
+               nickname: $('#nickname').val(), 
+               message: $('#msg').val(),
+               participantsUpdated: $('#participants_updated') 
+            }
+         )
       })
 
       socket.on('msgToClient', function (data) {
@@ -141,6 +138,16 @@
          html += '</div>'
 
          $('#dialogues').append(html)
+      })
+
+      socket.on('updateParticipantsOnClient', function (data) {
+         var html = ''
+         html += '<span class="participante">'
+         html += '<img src="images/ico_usuario.png" />'
+         html += data.nickname
+         html += '</span>'
+
+         $('#participants').append(html)
       })
    </script>
 

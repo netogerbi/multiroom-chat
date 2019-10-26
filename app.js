@@ -25,6 +25,12 @@ io.on('connection', function(socket) {
     // broadcast the message
     socket.broadcast.emit('msgToClient', { nickname: data.nickname, message: data.message })
 
+    // verify if it is updated
+    //if ()
+    socket.emit('updateParticipantsOnClient', { nickname: data.nickname })
+
+    socket.broadcast.emit('updateParticipantsOnClient', { nickname: data.nickname })
+
   })
 
 })

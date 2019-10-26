@@ -113,3 +113,18 @@ example (in client side, chat.ejs):
 the dataReceived is the message sent in the emit function above and you can acess the message using the message property setted in the object passed in emit second parameter:
 
 > dataReceived.message
+
+### Broadcasting a message (SERVER SIDE)
+
+If you want to send a message to all clients connected by the websocket, the ***io*** object has a method to realize this action.
+
+The method is called broadcast, and once it is emitting a message it cames before the emit function. so all you need to do is the following:
+
+```JavaScript
+const socket = app.get('socket')
+socket.broadcast.emit('messageToClient', { message: 'this message goes to all clients connected'})
+```
+
+The message above goes to all clients connected that listen the messageToClient event.
+
+IMPORTANT: When a message is sent to server, then the server emit this message to client, the emit function emits the data only to the cliente who send the message to server. The broadcast send message to all other clients but don't for the client who send the original message!
