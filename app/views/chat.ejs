@@ -125,9 +125,11 @@
             { 
                nickname: $('#nickname').val(), 
                message: $('#msg').val(),
-               participantsUpdated: $('#participants_updated') 
+               participantsUpdated: $('#participants_updated').val()
             }
          )
+         $('#participants_updated').val(1)
+         $('#msg').val('').focus()
       })
 
       socket.on('msgToClient', function (data) {
@@ -138,6 +140,7 @@
          html += '</div>'
 
          $('#dialogues').append(html)
+         window.scrollTo(0, document.body.scrollHeight)
       })
 
       socket.on('updateParticipantsOnClient', function (data) {

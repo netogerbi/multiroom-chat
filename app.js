@@ -26,11 +26,13 @@ io.on('connection', function(socket) {
     socket.broadcast.emit('msgToClient', { nickname: data.nickname, message: data.message })
 
     // verify if it is updated
-    //if ()
-    socket.emit('updateParticipantsOnClient', { nickname: data.nickname })
+    if (parseInt(data.participantsUpdated) === 0) {
 
-    socket.broadcast.emit('updateParticipantsOnClient', { nickname: data.nickname })
+      socket.emit('updateParticipantsOnClient', { nickname: data.nickname })
 
+      socket.broadcast.emit('updateParticipantsOnClient', { nickname: data.nickname })  
+    }
+    
   })
 
 })
