@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  multichat:
+    container_name: multichat
+    build: .
+    image: netogerbi/multichat:latest
+    ports:
+      - "8080:8080"
+    restart: always
