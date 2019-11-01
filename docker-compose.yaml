@@ -4,6 +4,9 @@ services:
   multichat:
     container_name: multichat
     build: .
+    command: nodemon app.js
+    volumes:
+      - .:/multichat
     image: netogerbi/multichat:latest
     ports:
       - "8080:8080"

@@ -1,8 +1,9 @@
 FROM node:8
-RUN mkdir -p /usr/scr/app
-WORKDIR /usr/src/app
-COPY package.json /usr/src/app
+RUN mkdir -p /app
+WORKDIR /multichat
+COPY package.json /multichat
 RUN npm i
-COPY . /usr/src/app
+RUN npm i -g nodemon
+COPY . /multichat
 EXPOSE 8080
 CMD ["node", "app.js"]

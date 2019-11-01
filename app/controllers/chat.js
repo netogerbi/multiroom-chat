@@ -8,7 +8,7 @@ module.exports.startChat = function (app, req, res) {
   if (errors) {
     res.render('index', { invalid: errors })
     return;
-  }
+  } 
 
 
   const formData = req.body
